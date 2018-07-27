@@ -1,0 +1,9 @@
+{
+  "name": "filesplitter",
+  "version": "1.0.0",
+  "description": "A javascript program that splits the large file into small files .",
+  "main": "index.js",
+  "repository": "https://github.com/sujilnt/fileSplitter.git",
+  "author": "sujil anto",
+  "license": "yes"
+}
