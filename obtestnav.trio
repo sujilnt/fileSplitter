@@ -1,0 +1,32 @@
+
+name:obtestnav
+func
+src:
+  /*
+      dictinput -> it must be dictionary that is used for querying 
+       ex:- dict:{"oat": r".*[Oo]utside[Aa]ir[Tt]e?mp.*",
+        "temp": r".*[Tt]e?mp.*",
+       };
+       
+      markerName -> it the tag you want to add  ex: marker()  
+      
+  */
+  
+  (dictInput,markerName) => do
+    dict: dictInput;
+    tagValues: markerName;
+    if(dictInput.isEmpty) return "input parameter Object are wrong or empty !"
+    // or else dictInput is not empty then .... 
+    createdictname: ((tagName,tagValues)=> do 
+            return {}.set(tagName,tagValues);
+       end);  
+       mappedval: each(dict,(value, name)=>do
+           diffObj:createdictname(name,tagValues); // function that create a tag for you based on "name" from dictinput and markerName.
+           filteredList:readAll(point and not name).findAll(rec => reMatches(value, rec->dis.toStr)).toGrid() // ex-> readAll(point).findAll(rec => reMatches(r".*[Oo]utside[Aa]ir[Tt]e?mp.*", rec->dis.toStr)).toGrid()
+           filteredList.addCol("diffs", (r) => r.diff(diffObj)).colToList("diffs").commit  // Commit them all
+           //filteredList.addCol("diffs", r => r.diff(diffObj})).colToList("diffs") // Gives back a list of 'diff's , only use for test purpos
+       end);
+       echo("tags added successfully");
+  end
+
+---

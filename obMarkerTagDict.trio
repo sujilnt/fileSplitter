@@ -1,0 +1,38 @@
+
+name:obMarkerTagDict
+func
+src:
+  () => do
+    dict:{
+        oat: r".*[Oo]utside[Aa]ir[Tt]e?mp.*",
+        temp: r".*[Tt]e?mp.*",
+        
+        doorHeater: r".*[Dd]oor[Hh]eater.*",
+        setpoint: r".*[Ss][Pp]",
+        return: r".*[Rr]eturn.*",
+        flow: r".*[Ff]low.*",
+        discharge: r".*[Ss]up.*",
+        fan: r".*[Ff]an.*",
+        cmd: r".*[Ee]nable.*",
+        cmd: r".*[Oo][Pp]",
+        valve: r".*[Vv]alve.*",
+        heating: r".*[Hh][Tt][Gg].*",
+        heating: r".*[Hh][Tt][Rr].*",
+        temp: r".*[Ss]pace.*",
+        damper: r".*[Dd]amper.*",
+        heat: r".*[Bb]urner.*",
+        exhaust: r".*Ext.*",
+        exhaust: r".*EF.*",
+        speed: r".*[Ss][Pp][Dd].*",
+        speed: r".*[Ss]peed.*",
+        boiler: r".*[Bb]oiler.*",
+        pump: r".*[Pp]ump.*",
+        boiler: r".*[Bb]lr.*",
+        pressure: r".*[Pp]res.*",
+        chilled: r".*[Cc]hil.*",
+        cmd: r".*[Ss]ignal.*",
+       };
+       obTagScript(dict,marker());
+  end
+
+---

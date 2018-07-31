@@ -1,0 +1,14 @@
+
+name:obMarkerTagDictWithoutDis
+func
+src:
+  () => do
+    dict:{
+        //oat: r".*[Oo]utside[Aa]ir[Tt]e?mp.*",
+        lights: r".*[Ll]ights.*"
+        // add your tags name here !         
+       };
+       obTagScirptWithoutDis(dict,marker());
+  end
+
+---

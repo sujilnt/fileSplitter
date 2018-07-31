@@ -1,0 +1,10 @@
+
+name:vishalboilertest
+func
+src:
+  () => do
+    "Hello world!"
+  end
+  
+
+---
