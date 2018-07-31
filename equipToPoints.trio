@@ -1,0 +1,20 @@
+
+name:equipToPoints
+func
+src:
+  /*
+   This function overrides standard 'site::equipToPoints' function
+   and illustrates how you can customize the points displayed by
+   by apps such as the SiteApp.  We demo two techniques in this
+   example.  First we include every "site-wide" point with the 'sitePoint'
+   tag.  Secondly for nested equips, we look for the 'summary' tag
+   to show select points in the parent equip.
+  */
+  (equip) => do
+     readAll(point and
+       ((equipRef==equip->id) or                     // direct points
+       (sitePoint and siteRef==equip->siteRef) or    // site-wide points
+       (equipRef->equipRef==equip->id and summary))) // summary points of nested equip
+  end
+
+---

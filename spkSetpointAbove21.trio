@@ -1,0 +1,23 @@
+
+name:spkSetpointAbove21
+func
+src:
+  /***
+  spark when setpoint temp is above threshhold
+  
+  Axon filter: setpoint
+  ****/
+  
+  (setpoint, dates, threshold: 21°C) => do
+    // read point history
+    his: setpoint.hisRead(dates)
+    
+    // analyze the point
+    // return true when sp is above threshold
+    // return a grid of timestap:duration values
+    his = his.hisRollup(avg, 30min) 
+    
+    his.hisFindPeriods v => v != null and v > threshold
+  end
+
+---

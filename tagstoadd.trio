@@ -1,0 +1,41 @@
+
+name:tagstoadd
+func
+src:
+  () => do
+      logCat: "rule"
+       dict:{
+        //"oat": r".*[Oo]utside[Aa]ir[Tt]e?mp.*",
+        //"temp": r".*[Tt]e?mp.*",
+        //"doorHeater": r".*[Dd]oor[Hh]eater.*",
+        //"setpoint": r".*[Ss][Pp]",
+        //"return": r".*[Rr]eturn.*",
+        //"flow": r".*[Ff]low.*",
+        //"discharge": r".*[Ss]up.*",
+        //"fan": r".*[Ff]an.*",
+        //"cmd": r".*[Ee]nable.*",
+        //"cmd": r".*[Oo][Pp]",
+        //"valve": r".*[Vv][al]?ve.*",
+        //"heating": r".*[Hh][Tt][Gg].*",
+        //"heating": r".*[Hh][Tt][Rr].*",
+        //"temp": r".*[Ss]pace.*",
+        "damper": r".*[Dd]amper.*",
+        
+        
+        
+       };
+       
+       mappedval: each(dict,(value, name)=>do
+           nametostring: name.toStr();
+           filteredList:readAll(point and not name).findAll(rec => reMatches(value, rec->dis.toStr)).toGrid()
+           
+           // always need to replace or change the name of the tag in next line,comment out the out other tags in the dict example in line 3  
+           // =>filteredList.addCol("diffs", r => r.diff({"tagName in strings ":marker()})).colToList("diffs").commit
+                
+           filteredList.addCol("diffs", r => r.diff({"damper":marker()})).colToList("diffs").commit // Commit them all 
+           //filteredList.addCol("diffs", r => r.diff({hisMode:"cov"})).colToList("diffs").commit // Gives back a list of 'diff's
+       end)
+  end
+  
+
+---

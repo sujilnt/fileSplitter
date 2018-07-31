@@ -1,0 +1,14 @@
+
+name:boolConversion
+func
+src:
+  () => do
+    tagswithENable: readAll(enable and kind=="Number")
+    tagswithENable = tagswithENable.each((row)=>do
+    rowid: row["id"].toStr;
+    newId:parseRef(rowid, dis: row["dis"], checked: true); 
+    hisRewrite(readLink(newId), (val,ts) => if(val < 0.5)[ ts, false] else if(val > 0.5 or val == 0.5)[ts, true] else [ts,val])
+    end)
+  end
+
+---
