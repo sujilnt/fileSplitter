@@ -1,0 +1,23 @@
+
+name:spkPumpsOnBoilerOff
+func
+src:
+  (theEquip, date) => do
+  
+  
+  pumpOn: read(boiler and pump and equipRef==theEquip->id)
+      .hisRead(date)
+      .hisFindPeriods(v => v > 0)
+      
+  
+  boilerOff: read(boiler and enable and equipRef==theEquip->id)
+      .hisRead(date)
+      .hisFindPeriods(v => v == 0)
+      
+  
+  faults: hisPeriodIntersection([pumpOn, boilerOff])
+    
+  
+  end
+
+---
